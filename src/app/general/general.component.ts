@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-general',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class GeneralComponent implements OnInit {
   newServerName = '';
   newServerContent = '';
+ @Output() serverAdded= new EventEmitter();
+ @Output() blueprintAdded= new EventEmitter();
 
   constructor() { }
 
@@ -15,19 +17,11 @@ export class GeneralComponent implements OnInit {
   }
 
   onAddServer() {
-    // this.serverElements.push({
-    //   type: 'server',
-    //   name: this.newServerName,
-    //   content: this.newServerContent
-    // });
+    this.serverAdded.emit({serverName:this.newServerName, serverContent:this.newServerContent})
   }
 
   onAddBlueprint() {
-    // this.serverElements.push({
-    //   type: 'blueprint',
-    //   name: this.newServerName,
-    //   content: this.newServerContent
-    // });
+    this.blueprintAdded.emit( {blueprintName:this.newServerName, blueprintContent:this.newServerContent})
   }
 
 }
