@@ -8,7 +8,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class GeneralComponent implements OnInit {
   newServerName = '';
   newServerContent = '';
- @Output() serverAdded= new EventEmitter();
+ @Output("serverCreated") serverAdded= new EventEmitter();
  @Output() blueprintAdded= new EventEmitter();
 
   constructor() { }
