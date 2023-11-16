@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-general',
@@ -7,9 +7,11 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class GeneralComponent implements OnInit {
   // newServerName = '';
-  newServerContent = '';
+  //newServerContent = '';
   @Output("serverCreated") serverAdded = new EventEmitter();
   @Output() blueprintAdded = new EventEmitter();
+  @ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef;
+
 
   constructor() {
   }
@@ -18,17 +20,19 @@ export class GeneralComponent implements OnInit {
   }
 
   onAddServer(nameInput: HTMLInputElement) {
-    console.log(nameInput.value)
+    // console.log(this.serverContentInput)
+    // console.log(nameInput.value)
+
     this.serverAdded.emit({
       serverName: nameInput.value,
-      serverContent: this.newServerContent
+      serverContent: this.serverContentInput.nativeElement.value
     })
   }
 
   onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintAdded.emit({
       blueprintName: nameInput.value,
-      blueprintContent: this.newServerContent
+      blueprintContent: this.serverContentInput.nativeElement.value
     })
   }
 
