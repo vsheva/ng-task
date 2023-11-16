@@ -6,22 +6,30 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
-  newServerName = '';
+  // newServerName = '';
   newServerContent = '';
- @Output("serverCreated") serverAdded= new EventEmitter();
- @Output() blueprintAdded= new EventEmitter();
+  @Output("serverCreated") serverAdded = new EventEmitter();
+  @Output() blueprintAdded = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  onAddServer() {
-    this.serverAdded.emit({serverName:this.newServerName, serverContent:this.newServerContent})
+  onAddServer(nameInput: HTMLInputElement) {
+    console.log(nameInput.value)
+    this.serverAdded.emit({
+      serverName: nameInput.value,
+      serverContent: this.newServerContent
+    })
   }
 
-  onAddBlueprint() {
-    this.blueprintAdded.emit( {blueprintName:this.newServerName, blueprintContent:this.newServerContent})
+  onAddBlueprint(nameInput: HTMLInputElement) {
+    this.blueprintAdded.emit({
+      blueprintName: nameInput.value,
+      blueprintContent: this.newServerContent
+    })
   }
 
 }
