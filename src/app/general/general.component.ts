@@ -10,7 +10,7 @@ export class GeneralComponent implements OnInit {
   //newServerContent = '';
   @Output("serverCreated") serverAdded = new EventEmitter();
   @Output() blueprintAdded = new EventEmitter();
-  @ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef;
+  @ViewChild('serverContent', {static: true}) serverContentInput: ElementRef;
 
 
   constructor() {
